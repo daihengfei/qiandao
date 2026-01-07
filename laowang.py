@@ -29,14 +29,14 @@ import numpy as np
 #     },
 
 #     {
-#         "name": "Standard Edge", 
+#         "name": "Standard Edge",
 #         "method": "canny",
 #         "blur": 3,
 #         "canny": (50, 150),
 #         "dilate": 1,
 #         "clahe": False
 #     },
-    
+
 #     {
 #         "name": "Sensitive Edge",
 #         "method": "canny",
@@ -101,7 +101,14 @@ class LaoWangSign:
         # # 使用DrissionPage访问页面
         # 配置选项
         co = ChromiumOptions()
-        co.set_proxy("http://127.0.0.1:7890")
+        is_ci = (
+            os.getenv("CI") == "true" or
+            os.getenv("GITHUB_ACTIONS") == "true" or
+            os.getenv("GITLAB_CI") == "true" or
+            os.getenv("TRAVIS") == "true"
+        )
+        if not is_ci:
+            co.set_proxy("http://127.0.0.1:7890")
         co.set_argument("--disable-gpu")  # 禁用 GPU（服务器通常没有）
         co.set_argument("--disable-dev-shm-usage")  # 解决共享内存不足崩溃
         co.headless(True)
