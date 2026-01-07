@@ -13,6 +13,7 @@ jobs:
       LAOWANG_HOSTNAME: ${{ secrets.LAOWANG_HOSTNAME }}
       LAOWANG_USERNAME: ${{ secrets.LAOWANG_USERNAME }}
       LAOWANG_PASSWORD: ${{ secrets.LAOWANG_PASSWORD }}
+      LAOWANG_COOKIE: ${{ secrets.LAOWANG_COOKIE }}
 
     steps:
       - name: Check out repository code
